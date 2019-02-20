@@ -1,0 +1,20 @@
+function[t,error] = error_script(Vin, tf, ti, ii, R, L,h)
+figure
+[ta,vout] = heun(Vin, tf, ti, ii, R, L,h);
+plot(ta,vout,'b');
+hold on;
+exact =             %exact solution of ODE
+plot(ta,exact,'r');      %plot approx and exact together
+error = exact - vout;
+
+
+figure
+    for(i = 3:10)
+        h = 2^(-i);
+        [ta,vout] = heun(Vin, tf, ti, ii, R, L,h);
+        exact =             %exact solution of ODE
+        error = exact-vout;
+        plot(log(h),log(error),'r');
+        hold on;
+    end
+end
