@@ -4,7 +4,7 @@
 %R,L: constnts
 %h: step-size
 
-function [t, vout] = heun(func, Vin, tf, ti, ii, R, L,h)
+function [t, vout] = heun(func, tf, ti, ii, R, L, h)
 
 N = round((tf-ti)/h);       %set size of arrays
 %plot(ti,ii,'*');          %plot initial condition
@@ -21,9 +21,10 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         grad_ave = (grad1 + grad2)/2;       %average gradient over [t,t+h]
         i(j+1)=itemp + h*grad_ave;         %next value of i calculated from previous values of i and t
         t(j+1)=ttemp + h;   
-        vout = Vin - R*i;
+        vout = 3.5*exp(-t(j)^2/0.00015) - R*i;                   %Calculate vout
         %plot(t,i,'r');
-        plot(t,vout,'b');                     %plot vout 
+        plot(t,vout,'b'),xlabel('t/s'),ylabel('Vout/V'),title('Vin=3.5,using heun');                     %plot vout 
+        
   
     end
 end

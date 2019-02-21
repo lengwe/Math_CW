@@ -1,15 +1,28 @@
-%Using Euler's method 
+%tf:final value
+%ti and ii: initial conditions 
+%Vin: function of t
+%R,L: constnts
+%h: step-size
+%Using endpoints method
 
-function [t,vout] = euler(Vin, tf, ti, ii, R, L,h)
+function [t, vout] = MyMethod(func, tf, ti, ii, R, L, h)
+N = round((tf-ti)/h);       %set size of arrays
 
-func = @(t,i) 1/L*(Vin - R*i);
-N = round((tf-ti)/h);       %determine the size of the array 
+i=zeros(1,N); t=zeros(1,N);       %set up arrays
+t(1)=ti;i(1)=ii;      %initialise arrays
 
-ia=zeros(1,N); ta=zeros(1,N);       %set up arrays
+    for j=1:N-1 
+        
+        ttemp=t(j); itemp=i(j); 
+        k1 = h * feval(func, ttemp, itemp);
+        f1 = ttemp(j) + 2*h/3;
+        f2 = itemp(j) + 2*k1/3;
+        k2 = h * feval(func, f1, f2);
+        i(j+1) = i(j) + 1/4*(k1+3*k2);
+        t(j+1) = ti + i*h;
+        
+        vout = 3.5 - R*i;
+        plot(t,vout,'b'),xlabel('t/s'),ylabel('Vout/V'),title('Vin=3.5, using MyMethod');
+    end
 
-ta(1)=ti;ia(1)=ii;                  %initialise arrays 
-for j=1:N-1
-    ia(j+1) = ia(j) + h*feval(funct, ta(j), ia(j));       %next value of i calculated from previous values of i and t
-    ta(j+1) = ta(j) + h;            %increase x by stepsize
-end
 end
