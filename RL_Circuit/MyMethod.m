@@ -10,19 +10,24 @@ N = round((tf-ti)/h);       %set size of arrays
 
 i=zeros(1,N); t=zeros(1,N);       %set up arrays
 t(1)=ti;i(1)=ii;      %initialise arrays
+vout(1) = 3.5*exp(-ti^2/0.00015) - R*ii;
 
     for j=1:N-1 
         
         ttemp=t(j); itemp=i(j); 
-        k1 = h * feval(func, ttemp, itemp);
-        f1 = ttemp(j) + 2*h/3;
-        f2 = itemp(j) + 2*k1/3;
-        k2 = h * feval(func, f1, f2);
-        i(j+1) = i(j) + 1/4*(k1+3*k2);
-        t(j+1) = ti + i*h;
+        k1 = feval(func, ttemp, itemp);
+        f1 = ttemp + 3*h/4;
+        f2 = itemp + 3*k1*h/4;
+        k2 = feval(func, f1, f2);
+        i(j+1) = i(j) + h*(k1/3+2*k2/3);
+        t(j+1) = ti + j*h;
         
-        vout = 3.5 - R*i;
-        plot(t,vout,'b'),xlabel('t/s'),ylabel('Vout/V'),title('Vin=3.5, using MyMethod');
+        vout(j+1) = 3.5*exp(-ttemp^2/0.00015) - R*itemp;                   %Calculate vout
+        %plot(t,i,'r');
+        
+        
     end
+    plot(t,vout,'b'),xlabel('t/s'),ylabel('Vout/V'),title('Vin=3.5,using heun');        
+
 
 end
