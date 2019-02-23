@@ -12,7 +12,7 @@ N = round((tf-ti)/h);       %set size of arrays
 
 i=zeros(1,N); t=zeros(1,N);       %set up arrays
 
-        Vin_t = feval(Vin,ti);
+Vin_t = feval(Vin,ti);
 vout(1) = Vin_t - R*ii;
 
 t(1)=ti;i(1)=ii;      %initialise arrays
@@ -30,7 +30,7 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         
         
     end
-    plot(t,vout,'b'),xlabel('t/s'),ylabel('Vout/V'),title('Vin=3.5,using heun');                     %plot vout 
+   
 
 end
 
