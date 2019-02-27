@@ -1,6 +1,9 @@
-k = 2500;
-h = 80;
-v = k/(h*h);
+k_o =1/5000;
+h_o =1/50;
+
+k = 1000;
+h = 50;
+v = k_o/(h_o*h_o);
 U = zeros(h,1);
 w = zeros(1,k);
 for m =1:h
@@ -11,6 +14,7 @@ for m =1:k
 end
 y_fun=2*U;%test funtion
 equ = zeros(h,h);
+op =eye(h,h)*(1-2*v);
 equ = equ + eye(h,h)*(1-2*v);
 res = zeros(k,h);
 for i=1:h-1
