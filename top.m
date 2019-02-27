@@ -15,8 +15,8 @@ end
 for l = n:b
     func(l,1)=2-2*U(l,1);
 end
-
-[t,y]=fd(func,h,k);
+t_b =0.5;
+[t,y]=fd(func,h,k,t_b);
 % mesh(U,t,y)
 for i = 1:10
     hold on
