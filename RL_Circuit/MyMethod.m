@@ -23,7 +23,7 @@ vout(1) = 3.5*exp(-ti^2/0.00015) - R*ii;
         i(j+1) = i(j) + h*(k1/3+2*k2/3);
         t(j+1) = ti + j*h;
         Vin_t = feval(Vin,ttemp);
-        vout(j+1) = 3.5*exp(-ttemp^2/0.00015) - R*itemp;                   %Calculate vout
+        vout(j+1) = Vin_t - R*itemp;                   %Calculate vout
         %plot(t,i,'r');
         
     end
