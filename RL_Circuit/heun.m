@@ -27,8 +27,6 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         Vin_t = feval(Vin,ttemp);
         vout(j+1) = Vin_t - R*itemp;                   %Calculate vout
         %plot(t,i,'r');
-        
-        
     end
    
 

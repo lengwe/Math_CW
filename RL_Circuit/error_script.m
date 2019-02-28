@@ -15,11 +15,11 @@ func = @(t,i,Vin) (1/L)*(Vin - R*i);
 
 [t1,vout1] = heun(func, Vin, tf, ti, ii, R, L,h);
 [t2,vout2] = MyMethod(func, Vin, tf, ti, ii, R, L,h);
-[t3,vout3] = Midpoint(func, Vin, tf, ti, ii, R, L,h);
-exact = Vin - 3.5;            %exact solution of ODE
+[t3,vout3] = midpoint(func, Vin, tf, ti, ii, R, L,h);
+exact = @(t,Vin) Vin - 3.5;            %exact solution of ODE
 %----------Ploting exact solution and three methods together------------
 figure (1);
-plot(t,exact);
+plot(t, exact);
 hold on;
 plot(t1,vout1);
 hold on;
@@ -50,7 +50,7 @@ for i=3:5
     h = 2^(-i);            %varing value of h
     [t1,vout1] = heun(func, Vin, tf, ti, ii, R, L,h);
     [t2,vout2] = MyMethod(func, Vin, tf, ti, ii, R, L,h);
-    [t3,vout3] = Midpoint(func, Vin, tf, ti, ii, R, L,h);
+    [t3,vout3] = midpoint(func, Vin, tf, ti, ii, R, L,h);
     error_order_heun = max(abs(exact - vout1));
     error_order_MyMethod = max(abs(exact - vout2));
     error_order_Midpoint= max(abs(exact - vout3));
