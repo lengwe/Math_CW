@@ -28,6 +28,7 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         %i(j+1) = i(j) + h*(k1/3+2*k2/3);
         i(j+1) = i(j) + h*k2;
         t(j+1) = ti + j*h;
+        Vin_t = feval(Vin,ttemp);
         vout(j) = Vin(t(j)) - R*i(j);                   %Calculate vout
         %plot(t,i,'r');
 

@@ -11,7 +11,7 @@ V = 6;
 T = 0.00015;
 %ln(7/2) = log10 (7/2)/log10 (e);
 Vin = @(t) V*cos(2*pi*t/T );
-func = @(t,i,Vin) (1/L)*(Vin - R*i);
+func = @(t,i) (1/L)*(Vin(t) - R*i);
 
 [t1,vout1] = heun(func, Vin, tf, ti, ii, R, L,h);
 [t2,vout2] = MyMethod(func, Vin, tf, ti, ii, R, L,h);

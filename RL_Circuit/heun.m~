@@ -10,7 +10,6 @@ N = round((tf-ti)/h);       %set size of arrays
 %plot(ti,ii,'*');          %plot initial condition
 %hold on;                %hold for more dat 
 
-vout=zeros(1,N);
 i=zeros(1,N); t=zeros(1,N);       %set up arrays
 
 %Vin_t = feval(Vin,ti);
@@ -26,7 +25,7 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         i(j+1)=itemp + h*grad_ave;         %next value of i calculated from previous values of i and t
         t(j+1)=ttemp + h;
         %Vin_t = feval(Vin,ttemp);
-        vout(j) = Vin(t(j)) - R*i(j);                   %Calculate vout
+        %vout(j+1) = Vin_t - R*itemp;                   %Calculate vout
         %plot(t,i,'r');
     end 
 
