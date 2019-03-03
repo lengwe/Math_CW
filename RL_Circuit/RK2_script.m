@@ -12,7 +12,7 @@ h = 0.0005;
 %Vin =  @(t) 3.5*exp(-t^2/0.00015);
 %Vin =  @(t) 3.5*exp(-t/0.00015);
 %Vin =  @(t) 4*sin(2*pi*t/0.00015);
-%Vin =  @(t) 4*sin(2*pi*t/0.000015);
+Vin =  @(t) 4*sin(2*pi*t/0.000015);
 %Vin =  @(t) 4*sin(2*pi*t/0.0004);
 %Vin =  @(t) 4*sin(2*pi*t/0.0011);
 %Vin =  @(t) 4*square(2*pi*t/0.00015);
@@ -32,7 +32,7 @@ h = 0.0005;
 
 func = @(t,i) (1/L)*(Vin(t)-R*i);               %Li'(t)+Ri(t)=Vin(t)
 
-[t1,vout1] = heun(func, Vin,tf, ti, ii, R, L,h);
+[t1,vout1] = heun(func,Vin,tf, ti, ii, R, L,h);
 [t2,vout2] = MyMethod(func,Vin, tf, ti, ii, R, L,h);
 [t3,vout3] = midpoint(func,Vin, tf, ti, ii, R, L,h);
 
