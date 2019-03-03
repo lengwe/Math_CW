@@ -47,8 +47,8 @@ xlabel('t/s'),ylabel('Error'),title('Error function');
 legend('error heun','error MyMethod','error Midpoint','Location','northeast');
 
 %--------------------Ploting order of the error-----------------
-
-for i=1:5
+figure(3);
+for i=1:2
     h = 2^(-i);            %varing value of h
     [t1,vout1] = heun(func, Vin, tf, ti, ii, R, L,h);
     [t2,vout2] = MyMethod(func, Vin, tf, ti, ii, R, L,h);
@@ -60,7 +60,6 @@ for i=1:5
     h_temp(i) = h;
 end
 
-figure(3);
 loglog(h_temp,error_order_heun);
 hold on;
 loglog(h_temp,error_order_MyMethod);
