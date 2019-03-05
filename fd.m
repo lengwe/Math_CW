@@ -19,7 +19,7 @@ for i=1:h-1
     equ(i+1,i)=v;
     equ(i,i+1)=v;
 end
-q = round((t_b/k_o)+1);
+q = round((t_b*k)+1);
 res(q,:)=y;
 y_new =y;
 % [U,S,V] = svd(equ);
@@ -29,10 +29,10 @@ y_new =y;
 % [Q,R] = qr(equ);
 % InvR =  inv(R'*R)*R';
 % qrInvA =InvR*Q';
- for i=1:q-1
-    y=inv(equ)*y;
-    res(q-i,:)=y;
- end
+  for i=1:q-1
+     y=inv(equ)*y;
+     res(q-i,:)=y;
+  end
 
 for m=q+1:k
     y_new = equ*y_new;

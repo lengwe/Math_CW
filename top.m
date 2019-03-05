@@ -1,6 +1,6 @@
 clear all,format long e
-k = 1/2500;
-h = 1/50;
+k = 1/40000;
+h = 1/20;
 b = (1/h)+1;
 U = zeros(b,1);
 func = zeros(b,1);
@@ -16,7 +16,7 @@ end
 %     func(l,1)=2-2*U(l,1);
 % end
 func = 1-U;
-t_b =0.5;
+t_b =0.00005;
 [t,y]=fd(func,h,k,t_b);
 mesh(U,t,y)
 % for i = 1:10
