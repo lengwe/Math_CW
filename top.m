@@ -9,15 +9,15 @@ n = m+1;
 for m =1:b
     U(m,1) = (m-1)*h;
 end
-% for i = 1:m
-%     func(i,1)=2*U(i,1);
-% end
-% for l = n:b
-%     func(l,1)=2-2*U(l,1);
-% end
-func = 1-U;
-t_b =0.00005;
-[t,y]=fd(func,h,k,t_b);
+for i = 1:m
+    func(i,1)=2*U(i,1);
+end
+for l = n:b
+    func(l,1)=2-2*U(l,1);
+end
+
+tb_fun = @(t)sin(2*pi*t);
+[t,y]=fd(func,h,k,tb_fun);
 mesh(U,t,y)
 % for i = 1:10
 %     hold on
