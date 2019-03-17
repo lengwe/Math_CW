@@ -6,15 +6,13 @@
 
 function [t, vout] = heun(func,Vin, tf, ti, ii, R, L, h)
 
-N = round((tf-ti)/h);       %set size of arrays
-%plot(ti,ii,'*');          %plot initial condition
-%hold on;                %hold for more dat 
+N = round((tf-ti)/h,0);       %set size of arrays
 
 vout=zeros(1,N);
 i=zeros(1,N); t=zeros(1,N);       %set up arrays
 
-%Vin_t = feval(Vin,ti);
-%vout(1) = Vin_t - R*ii;
+Vin_t = feval(Vin,ti);
+vout(1) = Vin_t - R*ii;
 
 t(1)=ti;i(1)=ii;      %initialise arrays
     for  j=1:N-1        %loop for N steps?
@@ -26,11 +24,9 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         i(j+1)=itemp + h*grad_ave;         %next value of i calculated from previous values of i and t
         t(j+1)=ttemp + h;
         %Vin_t = feval(Vin,ttemp);
-        vout(j) = Vin(t(j)) - R*i(j);                   %Calculate vout
+        vout(j+1) = Vin(t(j+1)) - R*i(j+1);                   %Calculate vout
         %plot(t,i,'r');
-
     end
-
 end
 
 

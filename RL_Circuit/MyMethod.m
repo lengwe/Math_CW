@@ -11,8 +11,8 @@ N = round((tf-ti)/h);       %set size of arrays
 vout=zeros(1,N);
 i=zeros(1,N); t=zeros(1,N);       %set up arrays
 t(1)=ti;i(1)=ii;      %initialise arrays
-% Vin_t = feval(Vin,ti);
-% vout(1) = Vin_t - R*ii;
+Vin_t = feval(Vin,ti);
+vout(1) = Vin_t - R*ii;
 
     for j=1:N-1 
         
@@ -22,15 +22,9 @@ t(1)=ti;i(1)=ii;      %initialise arrays
         f2 = itemp + 3*k1*h/4;
         k2 = feval(func, f1, f2);
         i(j+1) = i(j) + h*(k1/3+2*k2/3);
-
-        t(j+1) = ti + j*h;
-        Vin_t = feval(Vin,ttemp);
-        vout(j+1) = Vin_t - R*itemp;                   %Calculate vout
-
         t(j+1) = ti + j*h;        
-        vout(j) = Vin(t(j)) - R*itemp;                   %Calculate vout
+        vout(j+1) = Vin(t(j+1)) - R*i(j+1);                   %Calculate vout
         %plot(t,i,'r');
         
-    end
-           
+    end         
 end
